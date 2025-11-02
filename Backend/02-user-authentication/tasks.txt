@@ -1,0 +1,16 @@
+Title: user authentication
+Date: 02.11.2025
+Status: current
+Goal: Authentication
+stack: Typescript, Express, Prisma, Docker, Postgresql, JWT
+
+# Tasks
+
+- Express + Typescript
+- Docker compose + postgresql
+- Postman collection
+x Prisma connection
+x User model
+x User CRUD + Bcrypt
+x Login + JWT
+x Authorization middleware
