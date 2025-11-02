@@ -12,7 +12,8 @@ stack: Typescript, Express, Prisma, Docker, Postgresql, JWT
 - User model
 - Prisma connection
 - Create User + Bcrypt
-x CustomErrors middleware
+- CustomErrors middleware
+- User Validations
 x User CRUD
 x Login + JWT
 x Authorization middleware
