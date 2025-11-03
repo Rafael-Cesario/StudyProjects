@@ -1,6 +1,6 @@
 Title: user authentication
 Date: 02.11.2025
-Status: current
+Status: Done
 Goal: Authentication
 stack: Typescript, Express, Prisma, Docker, Postgresql, JWT
 
@@ -16,4 +16,4 @@ stack: Typescript, Express, Prisma, Docker, Postgresql, JWT
 - User Validations
 - Login + JWT
 - Authorization middleware
-> User CRUD
+- User CRUD
