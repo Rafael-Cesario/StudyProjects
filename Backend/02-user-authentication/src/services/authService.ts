@@ -13,7 +13,7 @@ class AuthService {
     if (!isValidPassword) throw new CustomError("Email or password incorrect.", 400);
 
     const secret = process.env.JWT_SECRET!;
-    const token = jwt.sign({ id: user.id }, secret, { expiresIn: "1h" });
+    const token = jwt.sign({ id: user.id }, secret, { expiresIn: "24h" });
 
     return token;
   }

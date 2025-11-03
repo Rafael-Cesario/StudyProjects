@@ -25,9 +25,6 @@ class UserService {
   }
 
   async update({ id, email, name }: IUserUpdate) {
-    const hasUser = await prisma.user.findUnique({ where: { id } });
-    if (!hasUser) throw new CustomError("User not found", 404);
-
     const userDB = await prisma.user.update({
       where: { id },
       data: { email, name },
