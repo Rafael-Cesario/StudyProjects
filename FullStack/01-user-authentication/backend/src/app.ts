@@ -1,5 +1,6 @@
 import express, { json, type Request, type Response } from "express";
 import { userRouter } from "./routes/userRouter";
+import { errorMiddleware } from "./middleware/errorMiddleware";
 
 const app = express();
 
@@ -10,5 +11,7 @@ app.get("/", (_req: Request, res: Response) => {
 });
 
 app.use("/user", userRouter);
+
+app.use(errorMiddleware);
 
 export { app };

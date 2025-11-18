@@ -3,5 +3,9 @@ Date: 14.11.2025
 Stack: Typescript, express, prisma, postgresql, jwt, bcrypt, zod
 
 - [ Schema ] user schema
-x [ Feature ] User routes
-x [ Feature ] create user
+- [ Feature ] User routes
+- [ Feature ] Validate req body with zod
+- [ Feature ] Hash password with bcrypt
+- [ Feature ] Error Middleware
+- [ Feature ] Prisma errors
+- [ Feature ] create user
