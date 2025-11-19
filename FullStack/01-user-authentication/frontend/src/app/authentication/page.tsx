@@ -4,9 +4,8 @@ import Image from "next/image";
 import { IUserCreate } from "@/src/interfaces/userInterface";
 import { userValidation } from "@/src/utils/userValidation";
 import { useState } from "react";
-import axios from "axios";
+import { userRequest } from "@/src/requests/userRequest";
 
-const url = "http://localhost:4000/user";
 const defaultFields: IUserCreate = { name: "", email: "", password: "", passwordConfirmation: "" };
 
 export default function Authentication() {
@@ -23,12 +22,18 @@ export default function Authentication() {
 
     if (hasError) return;
 
-    const response = await axios.post(url, formData);
+    const { message, error } = await userRequest.create(formData);
 
-    console.log(response);
+    if (error) {
+      console.log({ error });
+      return;
+    }
+
+    console.log({ message });
 
     // Tasks:
-    // catch errors
+    // Interface to show success and error message
+    // Show error message
     // show created user message
     // send user to login page
   };

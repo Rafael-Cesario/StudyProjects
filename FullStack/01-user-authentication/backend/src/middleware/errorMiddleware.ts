@@ -14,7 +14,7 @@ export const errorMiddleware = (error: Error, _req: Request, res: Response, _nex
   if (error instanceof Prisma.PrismaClientKnownRequestError) {
     let message = "";
 
-    if (error.code === "P2002") message = `Unique constraint failed on the field: ${error.meta!.target}`;
+    if (error.code === "P2002") message = `U100: Unique constraint failed on the field: ${error.meta!.target}`;
 
     return res.status(400).json({ error: message });
   }
