@@ -1,24 +1,36 @@
 "use client";
 
+import Image from "next/image";
 import { IUserCreate } from "@/src/interfaces/userInterface";
 import { userValidation } from "@/src/utils/userValidation";
-import Image from "next/image";
 import { useState } from "react";
+import axios from "axios";
 
+const url = "http://localhost:4000/user";
 const defaultFields: IUserCreate = { name: "", email: "", password: "", passwordConfirmation: "" };
 
 export default function Authentication() {
   const [formData, setFormData] = useState(defaultFields);
   const [errors, setErrors] = useState(defaultFields);
 
-  const createUser = () => {
+  // Tasks:
+  // Show and hide password
+
+  const createUser = async () => {
     const { hasError, errors } = userValidation.create(formData);
 
     setErrors(errors);
 
     if (hasError) return;
 
-    console.log("Create user");
+    const response = await axios.post(url, formData);
+
+    console.log(response);
+
+    // Tasks:
+    // catch errors
+    // show created user message
+    // send user to login page
   };
 
   const generateBorder = (field: keyof IUserCreate) => {
