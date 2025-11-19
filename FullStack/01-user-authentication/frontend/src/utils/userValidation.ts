@@ -26,11 +26,11 @@ class UserValidation {
 
     if (!emailRegex.test(email)) errors.email = "Seu email não é valido.";
 
-    if (password.length < 8) errors.password = "Sua senha é muito curta, minimo 8 caracteres.";
-    if (!/[a-z]/.test(password)) errors.password = "Sua senha precisa conter ao menos uma letra minúscula.";
-    if (!/[A-Z]/.test(password)) errors.password = "Sua senha precisa conter ao menos uma letra maiúscula.";
-    if (!/[0-9]/.test(password)) errors.password = "Sua senha precisa conter ao menos um número.";
     if (!/[!@#$%&*+]/.test(password)) errors.password = "Sua senha precisa conter ao menos um simbolo";
+    if (!/[0-9]/.test(password)) errors.password = "Sua senha precisa conter ao menos um número.";
+    if (!/[A-Z]/.test(password)) errors.password = "Sua senha precisa conter ao menos uma letra maiúscula.";
+    if (!/[a-z]/.test(password)) errors.password = "Sua senha precisa conter ao menos uma letra minúscula.";
+    if (password.length < 8) errors.password = "Sua senha é muito curta, mínimo 8 caracteres.";
 
     if (password !== passwordConfirmation) errors.passwordConfirmation = "Suas senhas precisam ser iguais.";
 

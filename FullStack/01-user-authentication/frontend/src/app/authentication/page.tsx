@@ -16,16 +16,9 @@ export default function Authentication() {
 
     setErrors(errors);
 
-    if (hasError) {
-      // show error message
-      return;
-    }
+    if (hasError) return;
 
-    // Task: validate user data
-    // Task: Display errors
-    // Task: Errors style and icons
-
-    console.log({ hasError, errors });
+    console.log("Create user");
   };
 
   const generateBorder = (field: keyof IUserCreate) => {
@@ -42,63 +35,59 @@ export default function Authentication() {
       <form onSubmit={(e) => e.preventDefault()} className="flex flex-col w-screen flex-wrap content-center mt-10">
         <h1 className="text-5xl font-bold mb-20 text-center">Criar uma conta</h1>
 
-        <div
-          className={`mb-10 border-2 w-1/4 rounded-lg relative flex justify-between items-center 
-            ${generateBorder("name")}`}
-        >
+        <div className={`flex flex-col mb-10 border-2 w-1/4 rounded-lg relative justify-between border-none`}>
           <span className="absolute -top-3 left-4 px-1 text-sm bg-[#eee]">Nome</span>
           <input
-            className="mr-2 w-full outline-none px-5 py-4"
+            className={`mr-2 w-full outline-none px-5 py-4 border-2 rounded-lg ${generateBorder("name")}`}
             autoFocus
             type="text"
             placeholder="Nome..."
             value={formData.name}
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
           />
+          <p className="text-red-500 p-2">{errors.name}</p>
         </div>
 
-        <div
-          className={`mb-10 border-2 w-1/4 border-neutral-200 rounded-lg relative flex justify-between items-center 
-            ${generateBorder("email")}`}
-        >
+        <div className={`mb-10 border-none w-1/4 relative flex flex-col justify-between`}>
           <span className="absolute -top-3 left-4 px-1 text-sm bg-[#eee]">Email</span>
           <input
-            className="mr-2 w-full outline-none px-5 py-4"
+            className={`mr-2 w-full outline-none px-5 py-4 border-2 rounded-lg ${generateBorder("email")}`}
             type="text"
             placeholder="Email..."
             value={formData.email}
             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
           />
+          <p className="text-red-500 p-2">{errors.email}</p>
         </div>
 
-        <div
-          className={`mb-10 border-2 w-1/4 border-neutral-200 rounded-lg relative flex justify-between items-center 
-            ${generateBorder("password")}`}
-        >
+        <div className={`mb-10 border-none w-1/4 relative flex flex-col justify-between`}>
           <span className="absolute -top-3 left-4 px-1 text-sm bg-[#eee]">Senha</span>
-          <input
-            className="mr-2 w-full outline-none px-5 py-4"
-            type="text"
-            placeholder="Senha..."
-            value={formData.password}
-            onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-          />
-          <Image className="mr-2" src="/icons/hide.png" alt="check mark" width="24" height="24" />
+          <div className={`w-full flex items-center ${generateBorder("password")} border-2 rounded-lg`}>
+            <input
+              className="mr-2 w-full outline-none px-5 py-4"
+              type="text"
+              placeholder="Senha..."
+              value={formData.password}
+              onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+            />
+            <Image className="mr-2" src="/icons/hide.png" alt="check mark" width="24" height="24" />
+          </div>
+          <p className="text-red-500 p-2">{errors.password}</p>
         </div>
 
-        <div
-          className={`mb-10 border-2 w-1/4 border-neutral-200 rounded-lg relative flex justify-between items-center
-          ${generateBorder("passwordConfirmation")}`}
-        >
+        <div className={`mb-10 border-none w-1/4 relative flex flex-col justify-between`}>
           <span className="absolute -top-3 left-4 px-1 text-sm bg-[#eee]">Confirmar senha</span>
-          <input
-            className="mr-2 w-full outline-none px-5 py-4"
-            type="text"
-            placeholder="Senha..."
-            value={formData.passwordConfirmation}
-            onChange={(e) => setFormData({ ...formData, passwordConfirmation: e.target.value })}
-          />
-          <Image className="mr-2" src="/icons/hide.png" alt="check mark" width="24" height="24" />
+          <div className={`w-full flex items-center ${generateBorder("passwordConfirmation")} border-2 rounded-lg`}>
+            <input
+              className="mr-2 w-full outline-none px-5 py-4"
+              type="text"
+              placeholder="Senha..."
+              value={formData.passwordConfirmation}
+              onChange={(e) => setFormData({ ...formData, passwordConfirmation: e.target.value })}
+            />
+            <Image className="mr-2" src="/icons/hide.png" alt="check mark" width="24" height="24" />
+          </div>
+          <p className="text-red-500 p-2">{errors.passwordConfirmation}</p>
         </div>
 
         <button
