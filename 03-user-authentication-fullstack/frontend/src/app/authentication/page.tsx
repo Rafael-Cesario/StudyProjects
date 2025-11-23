@@ -49,6 +49,12 @@ export default function Authentication() {
         <button className="text-blue-600">Entrar</button>
       </header>
 
+      <div className="absolute right-10 top-30 bg-neutral-900 p-4 w-xs rounded-lg border-2 border-neutral-800">
+        <h1 className="text-2xl text-red-500 mb-2">Algo deu errado</h1>
+        <p className="text-neutral-300 mb-4">Esse endereço de e-mail já está em uso. Por favor, tente fazer login ou use um e-mail diferente.</p>
+        <button className="text-black bg-neutral-100 w-full rounded-md cursor-pointer">Confirmar</button>
+      </div>
+
       <form onSubmit={(e) => e.preventDefault()} className="flex flex-col w-screen flex-wrap content-center mt-10">
         <h1 className="text-5xl font-bold mb-20 text-center">Criar uma conta</h1>
 
