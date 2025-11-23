@@ -10,6 +10,9 @@ import { Notification } from "@/src/components/notification";
 
 const defaultFields: IUserCreate = { name: "", email: "", password: "", passwordConfirmation: "" };
 
+// Task: InputField component
+// Task: PasswordField component
+
 export default function Authentication() {
   const [formData, setFormData] = useState(defaultFields);
   const [errors, setErrors] = useState(defaultFields);
@@ -47,7 +50,7 @@ export default function Authentication() {
         <button className="text-blue-600">Entrar</button>
       </header>
 
-      {notification.show && <Notification props={notification} />}
+      {notification.show && <Notification props={{ notification, setNotification }} />}
 
       <form onSubmit={(e) => e.preventDefault()} className="flex flex-col w-screen flex-wrap content-center mt-10">
         <h1 className="text-5xl font-bold mb-20 text-center">Criar uma conta</h1>
@@ -87,7 +90,7 @@ export default function Authentication() {
               value={formData.password}
               onChange={(e) => setFormData({ ...formData, password: e.target.value })}
             />
-            <button onClick={() => setShowPassword(!showPassword)} className="cursor-pointer mr-4">
+            <button type={"button"} onClick={() => setShowPassword(!showPassword)} className="cursor-pointer mr-4">
               {showPassword ? (
                 <Image src="/icons/show.png" alt="check mark" width="24" height="24" />
               ) : (
@@ -108,7 +111,7 @@ export default function Authentication() {
               value={formData.passwordConfirmation}
               onChange={(e) => setFormData({ ...formData, passwordConfirmation: e.target.value })}
             />
-            <button onClick={() => setShowPassword(!showPassword)} className="cursor-pointer mr-4">
+            <button type={"button"} onClick={() => setShowPassword(!showPassword)} className="cursor-pointer mr-4">
               {showPassword ? (
                 <Image src="/icons/show.png" alt="check mark" width="24" height="24" />
               ) : (
