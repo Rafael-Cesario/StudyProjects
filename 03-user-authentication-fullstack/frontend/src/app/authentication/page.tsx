@@ -12,12 +12,17 @@ const defaultFields: IUserCreate = { name: "", email: "", password: "", password
 
 // Task: InputField component
 // Task: PasswordField component
+// Task: Create User component
+// Task: Login component
+// Task: Active form state
+// Task: useUserRequest
 
 export default function Authentication() {
   const [formData, setFormData] = useState(defaultFields);
   const [errors, setErrors] = useState(defaultFields);
   const [notification, setNotification] = useState<INotification>({ show: false, type: "success", message: "" });
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const createUser = async () => {
     const { hasError, errors } = userValidation.create(formData);
@@ -26,8 +31,11 @@ export default function Authentication() {
 
     if (hasError) return;
 
-    // Tasks: Loading state
+    setLoading(true);
+
     const { message, error } = await userRequest.create(formData);
+
+    setLoading(false);
 
     if (error) {
       setNotification({ show: true, type: "error", message: error });
@@ -122,12 +130,18 @@ export default function Authentication() {
           <p className="text-red-500 p-2">{errors.passwordConfirmation}</p>
         </div>
 
-        <button
-          onClick={createUser}
-          className="bg-blue-500 text-white font-bold rounded-lg p-3 cursor-pointer hover:bg-green-500"
-        >
-          Criar conta
-        </button>
+        {loading ? (
+          <button type="button" className="bg-neutral-800 text-white font-bold rounded-lg p-3 cursor-pointer">
+            Enviando dados...
+          </button>
+        ) : (
+          <button
+            onClick={createUser}
+            className="bg-blue-500 text-white font-bold rounded-lg p-3 cursor-pointer hover:bg-green-500"
+          >
+            Criar conta
+          </button>
+        )}
       </form>
     </>
   );
