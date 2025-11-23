@@ -14,9 +14,7 @@ export default function Authentication() {
   const [formData, setFormData] = useState(defaultFields);
   const [errors, setErrors] = useState(defaultFields);
   const [notification, setNotification] = useState<INotification>({ show: false, type: "success", message: "" });
-
-  // Tasks:
-  // Show and hide password
+  const [showPassword, setShowPassword] = useState(false);
 
   const createUser = async () => {
     const { hasError, errors } = userValidation.create(formData);
@@ -25,6 +23,7 @@ export default function Authentication() {
 
     if (hasError) return;
 
+    // Tasks: Loading state
     const { message, error } = await userRequest.create(formData);
 
     if (error) {
@@ -34,8 +33,7 @@ export default function Authentication() {
 
     setNotification({ show: true, type: "success", message: message! });
 
-    // Tasks:
-    // send user to login page
+    // Tasks: Change form to login
   };
 
   const generateBorder = (field: keyof IUserCreate) => {
@@ -84,12 +82,18 @@ export default function Authentication() {
           <div className={`w-full flex items-center ${generateBorder("password")} border-2 rounded-lg`}>
             <input
               className="mr-2 w-full outline-none px-5 py-4"
-              type="text"
+              type={showPassword ? "text" : "password"}
               placeholder="Senha..."
               value={formData.password}
               onChange={(e) => setFormData({ ...formData, password: e.target.value })}
             />
-            <Image className="mr-2" src="/icons/hide.png" alt="check mark" width="24" height="24" />
+            <button onClick={() => setShowPassword(!showPassword)} className="cursor-pointer mr-4">
+              {showPassword ? (
+                <Image src="/icons/show.png" alt="check mark" width="24" height="24" />
+              ) : (
+                <Image src="/icons/hide.png" alt="check mark" width="24" height="24" />
+              )}
+            </button>
           </div>
           <p className="text-red-500 p-2">{errors.password}</p>
         </div>
@@ -99,12 +103,18 @@ export default function Authentication() {
           <div className={`w-full flex items-center ${generateBorder("passwordConfirmation")} border-2 rounded-lg`}>
             <input
               className="mr-2 w-full outline-none px-5 py-4"
-              type="text"
+              type={showPassword ? "text" : "password"}
               placeholder="Senha..."
               value={formData.passwordConfirmation}
               onChange={(e) => setFormData({ ...formData, passwordConfirmation: e.target.value })}
             />
-            <Image className="mr-2" src="/icons/hide.png" alt="check mark" width="24" height="24" />
+            <button onClick={() => setShowPassword(!showPassword)} className="cursor-pointer mr-4">
+              {showPassword ? (
+                <Image src="/icons/show.png" alt="check mark" width="24" height="24" />
+              ) : (
+                <Image src="/icons/hide.png" alt="check mark" width="24" height="24" />
+              )}
+            </button>
           </div>
           <p className="text-red-500 p-2">{errors.passwordConfirmation}</p>
         </div>

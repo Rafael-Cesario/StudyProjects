@@ -4,6 +4,9 @@ interface NotificationProps {
   props: INotification;
 }
 
+// Tasks:
+// Button close notification
+
 export const Notification = ({ props: { type, message } }: NotificationProps) => {
   const configs = {
     success: { title: "Sucesso", color: "text-green-500" },
