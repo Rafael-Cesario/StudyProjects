@@ -1,8 +1,6 @@
 # Study Projects
 
-Este repositório é uma coleção de pequenos projetos construídos para praticar, experimentar e documentar meus estudos em desenvolvimento web. Aqui, você encontra implementações que mostram meu domínio técnico e a evolução do meu aprendizado, com foco em boas práticas.
-
-Gosto de isolar meu foco de estudo em cada projeto. Trabalho um conceito de cada vez para não misturar tecnologias antes de ter domínio suficiente. Por isso você pode encontrar projetos muito simples, outros mais exagerados ou abordagens que não seguem exatamente o que eu faria em projetos reais. Também é comum eu não usar ferramentas que já conheço quando o objetivo é treinar outro ponto. Focar em apenas um tema por projeto também me ajuda a terminar mais rápido, sem gastar tempo com o que não é prioridade. Assim mantenho o estudo direcionado ao que realmente quero aprender e aproveito melhor meu tempo.
+Este repositório reúne pequenos projetos criados para praticar e registrar meu aprendizado em desenvolvimento web. Cada projeto explora um único conceito para garantir foco, acelerar o progresso e evitar misturar tecnologias antes da hora. Por isso alguns exemplos podem parecer simples, mais elaborados ou diferentes do que eu faria em projetos reais. Essa abordagem me permite aprender com mais clareza, desenvolver habilidades específicas e avançar de maneira consistente, sempre concentrando meu tempo no que realmente quero dominar.
 
 ### Stack
 
