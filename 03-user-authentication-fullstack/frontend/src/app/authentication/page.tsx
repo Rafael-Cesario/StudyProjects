@@ -5,12 +5,15 @@ import { IUserCreate } from "@/src/interfaces/userInterface";
 import { userValidation } from "@/src/utils/userValidation";
 import { useState } from "react";
 import { userRequest } from "@/src/requests/userRequest";
+import { INotification } from "@/src/interfaces/notificationInterface";
+import { Notification } from "@/src/components/notification";
 
 const defaultFields: IUserCreate = { name: "", email: "", password: "", passwordConfirmation: "" };
 
 export default function Authentication() {
   const [formData, setFormData] = useState(defaultFields);
   const [errors, setErrors] = useState(defaultFields);
+  const [notification, setNotification] = useState<INotification>({ show: false, type: "success", message: "" });
 
   // Tasks:
   // Show and hide password
@@ -25,16 +28,13 @@ export default function Authentication() {
     const { message, error } = await userRequest.create(formData);
 
     if (error) {
-      console.log({ error });
+      setNotification({ show: true, type: "error", message: error });
       return;
     }
 
-    console.log({ message });
+    setNotification({ show: true, type: "success", message: message! });
 
     // Tasks:
-    // Interface to show success and error message
-    // Show error message
-    // show created user message
     // send user to login page
   };
 
@@ -49,11 +49,7 @@ export default function Authentication() {
         <button className="text-blue-600">Entrar</button>
       </header>
 
-      <div className="absolute right-10 top-30 bg-neutral-900 p-4 w-xs rounded-lg border-2 border-neutral-800">
-        <h1 className="text-2xl text-red-500 mb-2">Algo deu errado</h1>
-        <p className="text-neutral-300 mb-4">Esse endereço de e-mail já está em uso. Por favor, tente fazer login ou use um e-mail diferente.</p>
-        <button className="text-black bg-neutral-100 w-full rounded-md cursor-pointer">Confirmar</button>
-      </div>
+      {notification.show && <Notification props={notification} />}
 
       <form onSubmit={(e) => e.preventDefault()} className="flex flex-col w-screen flex-wrap content-center mt-10">
         <h1 className="text-5xl font-bold mb-20 text-center">Criar uma conta</h1>
