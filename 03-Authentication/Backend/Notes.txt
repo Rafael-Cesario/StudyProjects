@@ -1,0 +1,59 @@
+Title: Authentication
+Date: 12.12.2025
+Stack: Typescript, Express, PostgreSQL + Docker, Prisma, ZOD, JWT, Bcrypt
+
+
+----------------------------------------------------------------
+
+
+# Tasks
+
+x Express
+x User Route
+x User Controller -> Service
+x PostgreSQl + Docker 
+x Prisma
+x Create User
+
+
+----------------------------------------------------------------
+
+
+# Features
+
+x Create User
+x Login
+
+
+----------------------------------------------------------------
+
+
+# Interfaces
+
+User: { 
+  id: UUID;
+  email: string;
+  name: string;
+  password: string;
+  createdAt: Date;
+}
+
+
+----------------------------------------------------------------
+
+
+# API Routes
+
+Create User
+    POST /user
+    > { email: string, name: string, password: string }
+    < { message: string }
+
+
+Login
+    POST /auth
+    > { email: string, password: string }
+    < { token: string, email: string, name: string }
+
+
+----------------------------------------------------------------

@@ -1,0 +1,11 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "license": "MIT",
+  "author": "Rafael",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {}
+}
+
