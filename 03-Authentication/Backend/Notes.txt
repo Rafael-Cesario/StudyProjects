@@ -8,7 +8,7 @@ Stack: Typescript, Express, PostgreSQL + Docker, Prisma, ZOD, JWT, Bcrypt
 
 # Tasks
 
-x Express
+- Express
 x User Route
 x User Controller -> Service
 x PostgreSQl + Docker 
