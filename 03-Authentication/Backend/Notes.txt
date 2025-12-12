@@ -11,7 +11,9 @@ Stack: Typescript, Express, PostgreSQL + Docker, Prisma, ZOD, JWT, Bcrypt
 - Express
 - PostgreSQl + Docker 
 - Prisma
-x User Route -> User Controller -> Service
+- User Route -> User Controller -> Service
+x Zod validations
+x Express error middleware
 x Create User
 
 
@@ -27,7 +29,7 @@ x Login
 ----------------------------------------------------------------
 
 
-# Interfaces
+# Models
 
 User: { 
   id: UUID;
