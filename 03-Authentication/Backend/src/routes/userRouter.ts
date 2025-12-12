@@ -1,9 +1,8 @@
 import { Router } from "express";
+import { userController } from "../controllers/userController";
 
 const route = Router();
 
-route.get("/", () => {
-  console.log("User route");
-});
+route.post("/", userController.create);
 
 export { route as userRouter };
