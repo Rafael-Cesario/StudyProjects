@@ -1,4 +1,5 @@
 import z from "zod";
+import bcrypt from "bcrypt";
 import type { Request, Response } from "express";
 import { userService } from "../services/userService";
 
@@ -11,12 +12,12 @@ class UserController {
     });
 
     const user = User.parse(req.body);
-    res.json({ user });
 
-    // Tasks
-    // Validate user input
-    // Create User
-    // Return success message
+    user.password = await bcrypt.hash(user.password, 10);
+
+    const message = await userService.create(user);
+
+    res.status(201).json({ message });
   }
 }
 
