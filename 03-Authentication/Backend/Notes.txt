@@ -16,7 +16,7 @@ Stack: Typescript, Express, PostgreSQL + Docker, Prisma, ZOD, JWT, Bcrypt
 - Express error middleware
 - bcrypt hash password
 - Create User
-x Catch Prisma errors
+- Catch Prisma errors
 
 
 ----------------------------------------------------------------
