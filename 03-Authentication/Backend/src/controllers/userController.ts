@@ -1,6 +1,6 @@
+import z from "zod";
 import type { Request, Response } from "express";
 import { userService } from "../services/userService";
-import z from "zod";
 
 class UserController {
   async create(req: Request, res: Response) {
@@ -11,7 +11,7 @@ class UserController {
     });
 
     const user = User.parse(req.body);
-    console.log({ user });
+    res.json({ user });
 
     // Tasks
     // Validate user input
