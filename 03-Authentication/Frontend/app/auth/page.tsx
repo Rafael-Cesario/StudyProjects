@@ -49,8 +49,23 @@ export default function Auth() {
           }}
         />
 
-        <PasswordInput props={{ field: "Senha" }} />
-        <PasswordInput props={{ field: "Confirmar senha" }} />
+        <PasswordInput
+          props={{
+            field: "password",
+            text: "Senha",
+            value: fields.password,
+            changeField,
+          }}
+        />
+
+        <PasswordInput
+          props={{
+            field: "passwordCheck",
+            text: "Confirmar senha",
+            value: fields.passwordCheck,
+            changeField,
+          }}
+        />
 
         <button className="bg-blue-800 w-100 py-2 px-4">Entrar</button>
       </form>
