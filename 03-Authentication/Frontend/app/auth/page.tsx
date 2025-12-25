@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { PasswordInput } from "./components/PasswordInput";
 import { TextInput } from "./components/TextInput";
+import { userValidator } from "./validators/userValidator";
 
 // type Forms = "login" | "create";
 
@@ -13,6 +14,13 @@ export default function Auth() {
 
   const createUser = () => {
     console.log({ fields });
+
+    const { errors, hasError } = userValidator.createUser(fields);
+    console.log({ errors, hasError });
+
+    // Tasks:
+    // Validate fields
+    // Display errors
   };
 
   const changeField = (name: string, value: string) => {
