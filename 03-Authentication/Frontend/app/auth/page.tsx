@@ -11,16 +11,14 @@ const defaultFields = { email: "", name: "", password: "", passwordCheck: "" };
 
 export default function Auth() {
   const [fields, setFields] = useState(defaultFields);
+  const [errors, setErrors] = useState(defaultFields);
 
   const createUser = () => {
-    console.log({ fields });
-
     const { errors, hasError } = userValidator.createUser(fields);
-    console.log({ errors, hasError });
 
-    // Tasks:
-    // Validate fields
-    // Display errors
+    setErrors(errors);
+
+    if (hasError) return;
   };
 
   const changeField = (name: string, value: string) => {
@@ -45,6 +43,7 @@ export default function Auth() {
             text: "Email",
             value: fields.email,
             changeField,
+            error: errors.email,
           }}
         />
 
@@ -54,6 +53,7 @@ export default function Auth() {
             text: "Nome",
             value: fields.name,
             changeField,
+            error: errors.name,
           }}
         />
 
@@ -63,6 +63,7 @@ export default function Auth() {
             text: "Senha",
             value: fields.password,
             changeField,
+            error: errors.password,
           }}
         />
 
@@ -72,6 +73,7 @@ export default function Auth() {
             text: "Confirmar senha",
             value: fields.passwordCheck,
             changeField,
+            error: errors.passwordCheck,
           }}
         />
 
