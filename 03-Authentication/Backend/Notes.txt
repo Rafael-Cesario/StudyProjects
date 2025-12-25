@@ -8,23 +8,14 @@ Stack: Typescript, Express, PostgreSQL + Docker, Prisma, ZOD, JWT, Bcrypt
 
 # Tasks
 
-- Express
-- PostgreSQl + Docker 
-- Prisma
-- User Route -> User Controller -> Service
-- Zod validations
-- Express error middleware
-- bcrypt hash password
-- Create User
-- Catch Prisma errors
-
+x Login
 
 ----------------------------------------------------------------
 
 
 # Features
 
-x Create User
+- Create User
 x Login
 
 
