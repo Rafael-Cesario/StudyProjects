@@ -18,7 +18,7 @@ export const errorMiddleware = (error: Error, req: Request, res: Response, next:
   }
 
   if (error instanceof Prisma.PrismaClientKnownRequestError) {
-    if (error.code === "P2002") res.status(400).json({ error: "Unique constraint failed on the field email." });
+    if (error.code === "P2002") res.status(400).json({ error: "E100: Unique constraint failed on the field email." });
 
     return;
   }
