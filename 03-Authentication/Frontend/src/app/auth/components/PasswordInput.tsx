@@ -32,7 +32,7 @@ export const PasswordInput = ({ props: { field, text, value, changeField, error 
           onChange={(e) => changeField(field, e.target.value)}
         />
 
-        <button className="mr-4" onClick={() => setHide(!hide)}>
+        <button type="button" className="mr-4" onClick={() => setHide(!hide)}>
           {hide && <Image width={24} height={24} src="/icons/eyeHide.png" alt={"Eye icon"} />}
           {hide || <Image width={24} height={24} src="/icons/eyeShow.png" alt={"Eye icon"} />}
         </button>

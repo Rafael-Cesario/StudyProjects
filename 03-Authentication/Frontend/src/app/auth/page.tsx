@@ -4,6 +4,7 @@ import { useState } from "react";
 import { PasswordInput } from "./components/PasswordInput";
 import { TextInput } from "./components/TextInput";
 import { userValidator } from "./validators/userValidator";
+import { userRequest } from "./requests/userRequest";
 
 // type Forms = "login" | "create";
 
@@ -13,12 +14,20 @@ export default function Auth() {
   const [fields, setFields] = useState(defaultFields);
   const [errors, setErrors] = useState(defaultFields);
 
-  const createUser = () => {
+  const createUser = async () => {
     const { errors, hasError } = userValidator.createUser(fields);
 
     setErrors(errors);
 
     if (hasError) return;
+
+    const response = await userRequest.createUser({
+      email: fields.email,
+      name: fields.name,
+      password: fields.password,
+    });
+
+    console.log({ response });
   };
 
   const changeField = (name: string, value: string) => {
