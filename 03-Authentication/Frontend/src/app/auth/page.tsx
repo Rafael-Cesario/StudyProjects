@@ -1,103 +1,26 @@
 "use client";
 
 import { useState } from "react";
-import { PasswordInput } from "./components/PasswordInput";
-import { TextInput } from "./components/TextInput";
-import { userValidator } from "./validators/userValidator";
-import { userRequest } from "./requests/userRequest";
 import { Notification } from "./components/Notification";
+import { CreateUserForm } from "./components/CreateUserForm";
+import { LoginForm } from "./components/loginForm";
+import { Header } from "./components/Header";
 
-// type Forms = "login" | "create";
-
-const defaultFields = { email: "", name: "", password: "", passwordCheck: "" };
+type Forms = "login" | "create";
 
 export default function Auth() {
-  const [fields, setFields] = useState(defaultFields);
-  const [errors, setErrors] = useState(defaultFields);
+  const [activeForm, setActiveForm] = useState<Forms>("login");
   const [notification, setNotification] = useState({ title: "", message: "", show: false });
-
-  const createUser = async () => {
-    const { errors, hasError } = userValidator.createUser(fields);
-
-    setErrors(errors);
-
-    if (hasError) return;
-
-    const response = await userRequest.createUser({
-      email: fields.email,
-      name: fields.name,
-      password: fields.password,
-    });
-
-    if (!response.success) {
-      setNotification({ title: "Erro", message: response.error, show: true });
-      return;
-    }
-
-    setNotification({ title: "Sucesso", message: response.message, show: true });
-    setFields(defaultFields);
-  };
-
-  const changeField = (name: string, value: string) => {
-    setFields({ ...fields, [name]: value });
-  };
 
   return (
     <>
-      <header className="flex justify-end items-center h-10 p-10 mb-8">
-        <div className="flex">
-          <p className="mr-2">Já tem uma conta?</p>
-          <button className="text-blue-500">Entrar</button>
-        </div>
-      </header>
+      <Header props={{ activeForm, setActiveForm }} />
 
       {notification.show && <Notification props={{ notification, setNotification }} />}
 
-      <form onSubmit={(e) => (e.preventDefault(), createUser())} className="flex items-center flex-col gap-10">
-        <h1 className="text-2xl">Criar uma conta</h1>
+      {activeForm === "login" && <LoginForm />}
 
-        <TextInput
-          props={{
-            field: "email",
-            text: "Email",
-            value: fields.email,
-            changeField,
-            error: errors.email,
-          }}
-        />
-
-        <TextInput
-          props={{
-            field: "name",
-            text: "Nome",
-            value: fields.name,
-            changeField,
-            error: errors.name,
-          }}
-        />
-
-        <PasswordInput
-          props={{
-            field: "password",
-            text: "Senha",
-            value: fields.password,
-            changeField,
-            error: errors.password,
-          }}
-        />
-
-        <PasswordInput
-          props={{
-            field: "passwordCheck",
-            text: "Confirmar senha",
-            value: fields.passwordCheck,
-            changeField,
-            error: errors.passwordCheck,
-          }}
-        />
-
-        <button className="bg-blue-800 w-100 py-2 px-4">Entrar</button>
-      </form>
+      {activeForm === "create" && <CreateUserForm props={{ setNotification }} />}
     </>
   );
 }
