@@ -1,3 +1,0 @@
-Title: User authentication
-Date: 14.11.2025
-Stack: Typescript, Nextjs, Tailwind, react-query
