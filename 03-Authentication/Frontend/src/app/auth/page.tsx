@@ -27,7 +27,11 @@ export default function Auth() {
       password: fields.password,
     });
 
-    console.log({ response });
+    // Tasks: Notification display error message
+    if (!response.success) return console.log(response.error);
+
+    // Tasks: Notification success message
+    console.log(response.message);
   };
 
   const changeField = (name: string, value: string) => {
