@@ -5,6 +5,7 @@ import { PasswordInput } from "./components/PasswordInput";
 import { TextInput } from "./components/TextInput";
 import { userValidator } from "./validators/userValidator";
 import { userRequest } from "./requests/userRequest";
+import { Notification } from "./components/Notification";
 
 // type Forms = "login" | "create";
 
@@ -13,6 +14,7 @@ const defaultFields = { email: "", name: "", password: "", passwordCheck: "" };
 export default function Auth() {
   const [fields, setFields] = useState(defaultFields);
   const [errors, setErrors] = useState(defaultFields);
+  const [notification, setNotification] = useState({ title: "", message: "", show: false });
 
   const createUser = async () => {
     const { errors, hasError } = userValidator.createUser(fields);
@@ -27,11 +29,13 @@ export default function Auth() {
       password: fields.password,
     });
 
-    // Tasks: Notification display error message
-    if (!response.success) return console.log(response.error);
+    if (!response.success) {
+      setNotification({ title: "Erro", message: response.error, show: true });
+      return;
+    }
 
-    // Tasks: Notification success message
-    console.log(response.message);
+    setNotification({ title: "Sucesso", message: response.message, show: true });
+    setFields(defaultFields);
   };
 
   const changeField = (name: string, value: string) => {
@@ -46,6 +50,8 @@ export default function Auth() {
           <button className="text-blue-500">Entrar</button>
         </div>
       </header>
+
+      {notification.show && <Notification props={{ notification, setNotification }} />}
 
       <form onSubmit={(e) => (e.preventDefault(), createUser())} className="flex items-center flex-col gap-10">
         <h1 className="text-2xl">Criar uma conta</h1>
