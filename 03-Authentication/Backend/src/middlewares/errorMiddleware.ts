@@ -1,6 +1,7 @@
 import type { Request, Response, NextFunction } from "express";
 import z, { ZodError } from "zod";
 import { Prisma } from "../generated/prisma/client";
+import { CustomError } from "../helpers/customError";
 
 export const errorMiddleware = (error: Error, req: Request, res: Response, next: NextFunction) => {
   if (error instanceof ZodError) {
@@ -23,6 +24,11 @@ export const errorMiddleware = (error: Error, req: Request, res: Response, next:
     return;
   }
 
-  console.log({ error: error });
+  if (error instanceof CustomError) {
+    res.status(400).json({ error: error.message });
+
+    return;
+  }
+
   res.status(500).json({ error: "An unexpected error occurred" });
 };
