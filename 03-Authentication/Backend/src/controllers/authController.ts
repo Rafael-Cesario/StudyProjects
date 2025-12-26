@@ -11,18 +11,23 @@ class AuthController {
     });
 
     const login = Login.parse(req.body);
-
     const token = await authService.login(login);
+    const isProduction = process.env.NODE_ENV === "production";
 
     res.cookie("authentication", token, {
       httpOnly: true,
       maxAge: 1000 * 60 * 60, // 1 Hour
+      secure: isProduction,
+      sameSite: isProduction ? "none" : "lax",
+      path: "/",
     });
 
     res.status(200).json({ message: "Success" });
   }
 
   async validateToken(req: Request, res: Response) {
+    console.log(req.cookies);
+
     const token = req.cookies["authentication"];
     const isValid = validateToken(token);
     res.status(200).json({ isValid });
