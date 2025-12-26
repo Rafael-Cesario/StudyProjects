@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { TextInput } from "./TextInput";
 import { PasswordInput } from "./PasswordInput";
+import { api } from "@/src/server/axios";
 
 const defaultFields = { email: "", password: "" };
 
@@ -13,8 +14,14 @@ export const LoginForm = () => {
     setFields({ ...fields, [name]: value });
   };
 
-  const login = () => {
-    console.log({ fields });
+  const login = async () => {
+    await api.post("/auth", fields, { withCredentials: true });
+
+    // Tasks:
+    // create a class for auth requests
+    // error if fields are empty
+    // error if invalid credentials
+    // send user to home page
   };
 
   return (
