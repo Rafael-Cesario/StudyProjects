@@ -26,8 +26,6 @@ class AuthController {
   }
 
   async validateToken(req: Request, res: Response) {
-    console.log(req.cookies);
-
     const token = req.cookies["authentication"];
     const isValid = validateToken(token);
     res.status(200).json({ isValid });
