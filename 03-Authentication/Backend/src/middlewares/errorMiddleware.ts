@@ -30,5 +30,11 @@ export const errorMiddleware = (error: Error, req: Request, res: Response, next:
     return;
   }
 
+  if (error.name === "JsonWebTokenError") {
+    res.status(400).json({ error: "Invalid Token" });
+
+    return;
+  }
+
   res.status(500).json({ error: "An unexpected error occurred" });
 };
