@@ -9,7 +9,6 @@ export class TaskController {
     const Task = z.object({ title: z.string().min(3).max(50), description: z.string() });
     const task = Task.parse(req.body);
 
-    // Temp:
     res.status(201).json({ task });
   }
 }
