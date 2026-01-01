@@ -1,3 +1,4 @@
+import "dotenv/config";
 import request from "supertest";
 import { describe, test, expect } from "vitest";
 import { app } from "../app";
